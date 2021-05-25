@@ -1,5 +1,5 @@
 import sys
-import pyupbit
+import pybithumb
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
 form_class = uic.loadUiType("main.ui")[0]
@@ -10,6 +10,7 @@ class MainWindow(QMainWindow, form_class):
         self.setupUi(self)
 
         self.button.clicked.connect(self.clickBtn)
+        self.tickerButton.clicked.connect(self.clickTickerBtn)
 
     def clickBtn(self):
         if self.button.text() == "매매시작":
@@ -19,18 +20,23 @@ class MainWindow(QMainWindow, form_class):
                 self.textEdit.append("KEY가 올바르지 않습니다.")
                 return
             else:
-                self.b = pyupbit.Upbit(apiKey, secKey)
+                self.b = pybithumb.Bithumb(apiKey, secKey)
                 balance = self.b.get_balance(self.ticker)
                 if balance == None:
                     self.textEdit.append("KEY가 올바르지 않습니다.")
                     return
             self.button.setText("매매중지")
             self.textEdit.append("------ START ------")
-            self.textEdit.append(f"보유 현금 : {self.balance[2]} 원")
-
+            self.textEdit.append(f"보유 현금 : {self.balance[1]} 원")
         else:
             self.textEdit.append("------- END -------")
             self.button.setText("매매시작")
+
+    def clickTickerBtn(self):
+        if self.tickerButton.text() == "검색":
+            self.ticker = self.tickerName.text()
+        return self.ticker
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
