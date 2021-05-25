@@ -1,5 +1,5 @@
 import sys
-import pybithumb
+import pyupbit
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
 form_class = uic.loadUiType("main.ui")[0]
@@ -19,7 +19,7 @@ class MainWindow(QMainWindow, form_class):
                 self.textEdit.append("KEY가 올바르지 않습니다.")
                 return
             else:
-                self.b = pybithumb.Bithumb(apiKey, secKey)
+                self.b = pyupbit.Upbit(apiKey, secKey)
                 balance = self.b.get_balance(self.ticker)
                 if balance == None:
                     self.textEdit.append("KEY가 올바르지 않습니다.")
