@@ -8,7 +8,7 @@ class OverViewWorker(QThread):
     dataSent = pyqtSignal(int, float, float, int, float, int, float, int)
 
     def __init__(self, ticker):
-        super().__init()
+        super().__init__()
         self.ticker = ticker
         self.running = True
 
