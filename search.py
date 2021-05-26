@@ -11,8 +11,11 @@ class SearchWidget(QWidget):
 
     def clickTickerBtn(self):
         if self.tickerButton.text() == "검색":
-            pass
-
+            if self.getTicker.text not in pyupbit.get_tickers():
+                self.textEdit.append("올바른 티커가 아닙니다.")
+            else:
+                self.ticker = self.getTicker.text()
+        return self.ticker
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
