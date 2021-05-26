@@ -1,5 +1,5 @@
 import sys
-import pybithumb
+import pyupbit
 import time
 from PyQt5 import uic
 from PyQt5.QtWidgets import QTableWidgetItem, QProgressBar, QWidget
@@ -7,7 +7,7 @@ from PyQt5.QtCore import Qt, QThread, pyqtSignal
 
 
 class OrderbookWorker(QThread):
-    dataSent = pyqtSignal(dict)
+    dataSent = pyqtSignal(list)
 
     def __init__(self, ticker):
         super().__init__()
@@ -16,8 +16,8 @@ class OrderbookWorker(QThread):
 
     def run(self):
         while self.running:
-            data = pybithumb.get_orderbook(self.ticker, limit=10)
-            time.sleep(0.05)
+            data = pyupbit.get_orderbook(self.ticker)
+            time.sleep(0.1)
             self.dataSent.emit(data)
 
     def close(self):
@@ -69,30 +69,29 @@ class OrderbookWidget(QWidget):
         self.ow.start()
 
     def updateData(self, data):
-        tradingBidValues = []
-        for v in data['bids']:
-            tradingBidValues.append(int(v['price'] * v['quantity']))
-
         tradingAskValues = []
-        for v in data['asks'][::-1]:
-            tradingAskValues.append(int(v['price'] * v['quantity']))
-
+        tradingBidValues = []
+        for v in data['orderbook_units']:
+            tradingBidValues.append(int(v['bid_price'] * v['bid_size']))
+        for v in data['orderbook_units'][::-1]:
+            tradingAskValues.append(int(v['ask_price'] * v['ask_size']))
         maxtradingValue = max(tradingBidValues + tradingAskValues)
-        for i, v in enumerate(data['asks'][::-1]):
+
+        for i, v in enumerate(data['orderbook_units'][::-1]):
             item_0 = self.tableAsks.item(i, 0)
-            item_0.setText(f"{v['price']:,}")
+            item_0.setText(f"{v['ask_price']:,}")
             item_1 = self.tableAsks.item(i, 1)
-            item_1.setText(f"{v['quantity']:,}")
+            item_1.setText(f"{v['ask_size']:,}")
             item_2 = self.tableAsks.cellWidget(i, 2)
             item_2.setRange(0, maxtradingValue)
             item_2.setFormat(f"{tradingAskValues[i]:,}")
             item_2.setValue(tradingAskValues[i])
 
-        for i, v in enumerate(data['bids']):
+        for i, v in enumerate(data['orderbook_units']):
             item_0 = self.tableBids.item(i, 0)
-            item_0.setText(f"{v['price']:,}")
+            item_0.setText(f"{v['bid_price']:,}")
             item_1 = self.tableBids.item(i, 1)
-            item_1.setText(f"{v['quantity']:,}")
+            item_1.setText(f"{v['bid_size']:,}")
             item_2 = self.tableBids.cellWidget(i, 2)
             item_2.setRange(0, maxtradingValue)
             item_2.setFormat(f"{tradingBidValues[i]:,}")
