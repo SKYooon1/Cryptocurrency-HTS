@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>941</height>
+    <height>824</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -45,6 +45,12 @@
        <pointsize>9</pointsize>
       </font>
      </property>
+     <property name="tabletTracking">
+      <bool>false</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
      <property name="frameShadow">
       <enum>QFrame::Sunken</enum>
      </property>
@@ -78,6 +84,9 @@
      <property name="alternatingRowColors">
       <bool>true</bool>
      </property>
+     <property name="textElideMode">
+      <enum>Qt::ElideLeft</enum>
+     </property>
      <property name="showGrid">
       <bool>true</bool>
      </property>
@@ -93,10 +102,22 @@
      <attribute name="horizontalHeaderVisible">
       <bool>true</bool>
      </attribute>
+     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+      <bool>false</bool>
+     </attribute>
      <attribute name="horizontalHeaderStretchLastSection">
       <bool>true</bool>
      </attribute>
      <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderCascadingSectionResizes">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderDefaultSectionSize">
+      <number>25</number>
+     </attribute>
+     <attribute name="verticalHeaderStretchLastSection">
       <bool>false</bool>
      </attribute>
      <row/>
@@ -157,6 +178,12 @@
        <pointsize>9</pointsize>
       </font>
      </property>
+     <property name="tabletTracking">
+      <bool>false</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
      <property name="frameShadow">
       <enum>QFrame::Sunken</enum>
      </property>
@@ -190,6 +217,9 @@
      <property name="alternatingRowColors">
       <bool>true</bool>
      </property>
+     <property name="textElideMode">
+      <enum>Qt::ElideLeft</enum>
+     </property>
      <property name="showGrid">
       <bool>true</bool>
      </property>
@@ -205,10 +235,22 @@
      <attribute name="horizontalHeaderVisible">
       <bool>false</bool>
      </attribute>
+     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+      <bool>false</bool>
+     </attribute>
      <attribute name="horizontalHeaderStretchLastSection">
       <bool>true</bool>
      </attribute>
      <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderCascadingSectionResizes">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderDefaultSectionSize">
+      <number>25</number>
+     </attribute>
+     <attribute name="verticalHeaderStretchLastSection">
       <bool>false</bool>
      </attribute>
      <row/>
