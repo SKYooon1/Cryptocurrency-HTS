@@ -21,10 +21,13 @@ class SearchWidget(QWidget):
 
     def clickTickerBtn(self):
         if self.tickerButton.text() == "검색":
-            if self.getTicker.text() not in pyupbit.get_tickers():
-                pass
+            if self.getTicker.text() not in self.tickerList:
+                wrongName = QMessageBox()
+                wrongName.setText("없는코인")
+                wrongName.setStandardButtons(QMessageBox.Yes)
+                wrongName = wrongName.exec()
             else:
-                pass
+                self.getTicker.setText("구현중")
 
     def itemSelect(self):
         lst_item = self.listWidget.selectedItems()
