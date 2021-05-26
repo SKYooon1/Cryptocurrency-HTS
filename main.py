@@ -1,8 +1,5 @@
 import sys
 import pyupbit
-import chart
-import orderbook
-import overview
 import search
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
@@ -37,10 +34,10 @@ class MainWindow(QMainWindow, form_class):
             self.button.setText("매매시작")
 
     def closeEvent(self, event):
-        overview.ovw.close()
-        orderbook.obw.close()
-        search.sw.close()
-        chart.cw.close()
+        self.widget.closeEvent(event)
+        self.widget_2.closeEvent(event)
+        self.widget_3.closeEvent(event)
+        self.widget_4.closeEvent(event)
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 import sys
 import pyupbit
 from PyQt5 import uic
-from PyQt5.QtWidgets import QTableWidgetItem, QProgressBar, QWidget, QApplication, QMainWindow
+from PyQt5.QtWidgets import QWidget, QMessageBox
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 
 class SearchWidget(QWidget):
@@ -9,15 +9,23 @@ class SearchWidget(QWidget):
         super().__init__(parent)
         uic.loadUi("search.ui", self)
 
+        self.tickerButton.clicked.connect(self.clickTickerBtn)
+        for i in pyupbit.get_tickers():
+            self.listWidget.addItem(i)
+
     def clickTickerBtn(self):
         if self.tickerButton.text() == "검색":
-            if self.getTicker.text not in pyupbit.get_tickers():
-                self.textEdit.append("올바른 티커가 아닙니다.")
+            if self.getTicker.text() not in pyupbit.get_tickers():
+                pass
             else:
-                self.ticker = self.getTicker.text()
+                pass
+
+    def setTicker(self):
         return self.ticker
 
 if __name__ == "__main__":
+    from PyQt5.QtWidgets import QApplication
+
     app = QApplication(sys.argv)
     sw = SearchWidget()
     sw.show()
