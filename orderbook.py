@@ -16,7 +16,7 @@ class OrderbookWorker(QThread):
 
     def run(self):
         while self.running:
-            data = pybithumb.get_orderbook(self.ticker, limit=10)
+            data = pybithumb.get_orderbook(self.ticker, limit=15)
             time.sleep(0.05)
             self.dataSent.emit(data)
 
