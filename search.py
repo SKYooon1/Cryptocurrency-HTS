@@ -10,7 +10,11 @@ class SearchWidget(QWidget):
         uic.loadUi("search.ui", self)
 
         self.tickerButton.clicked.connect(self.clickTickerBtn)
+        self.tickerList = []
         for i in pyupbit.get_tickers():
+            if (i.split('-')[0] == 'KRW'):
+                self.tickerList.append(i.split('-')[1])
+        for i in self.tickerList:
             self.listWidget.addItem(i)
 
     def clickTickerBtn(self):
