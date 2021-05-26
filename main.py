@@ -1,7 +1,12 @@
 import sys
 import pyupbit
+import chart
+import orderbook
+import overview
+import search
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
+
 form_class = uic.loadUiType("main.ui")[0]
 
 class MainWindow(QMainWindow, form_class):
@@ -10,7 +15,6 @@ class MainWindow(QMainWindow, form_class):
         self.setupUi(self)
 
         self.button.clicked.connect(self.clickBtn)
-        self.tickerButton.clicked.connect(self.clickTickerBtn)
 
     def clickBtn(self):
         if self.button.text() == "매매시작":
@@ -32,10 +36,11 @@ class MainWindow(QMainWindow, form_class):
             self.textEdit.append("------- END -------")
             self.button.setText("매매시작")
 
-    def clickTickerBtn(self):
-        if self.tickerButton.text() == "검색":
-            self.ticker = self.tickerName.text()
-        return self.ticker
+    def closeEvent(self, event):
+        overview.ovw.close()
+        orderbook.obw.close()
+        search.sw.close()
+        chart.cw.close()
 
 
 if __name__ == "__main__":
