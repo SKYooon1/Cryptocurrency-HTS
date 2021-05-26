@@ -18,8 +18,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>1080</width>
-    <height>620</height>
+    <width>0</width>
+    <height>0</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -101,15 +101,9 @@
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <widget class="OrderbookWidget" name="widget_4" native="true">
-        <property name="minimumSize">
-         <size>
-          <width>500</width>
-          <height>0</height>
-         </size>
-        </property>
         <property name="maximumSize">
          <size>
-          <width>16777215</width>
+          <width>500</width>
           <height>16777215</height>
          </size>
         </property>
