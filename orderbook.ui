@@ -6,30 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>819</height>
+    <width>461</width>
+    <height>767</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
    <item row="0" column="0">
     <widget class="QTableWidget" name="tableAsks">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -37,7 +25,13 @@
      <property name="minimumSize">
       <size>
        <width>400</width>
-       <height>10</height>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>500</width>
+       <height>16777215</height>
       </size>
      </property>
      <property name="font">
@@ -94,7 +88,7 @@
       <bool>true</bool>
      </property>
      <property name="rowCount">
-      <number>15</number>
+      <number>10</number>
      </property>
      <property name="columnCount">
       <number>3</number>
@@ -115,16 +109,14 @@
       <bool>true</bool>
      </attribute>
      <attribute name="verticalHeaderDefaultSectionSize">
-      <number>25</number>
+      <number>40</number>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>true</bool>
      </attribute>
      <attribute name="verticalHeaderStretchLastSection">
       <bool>false</bool>
      </attribute>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
      <row/>
      <row/>
      <row/>
@@ -162,7 +154,7 @@
    <item row="2" column="0">
     <widget class="QTableWidget" name="tableBids">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -170,7 +162,13 @@
      <property name="minimumSize">
       <size>
        <width>400</width>
-       <height>10</height>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>500</width>
+       <height>16777215</height>
       </size>
      </property>
      <property name="font">
@@ -227,7 +225,7 @@
       <bool>true</bool>
      </property>
      <property name="rowCount">
-      <number>15</number>
+      <number>10</number>
      </property>
      <property name="columnCount">
       <number>3</number>
@@ -248,16 +246,14 @@
       <bool>true</bool>
      </attribute>
      <attribute name="verticalHeaderDefaultSectionSize">
-      <number>25</number>
+      <number>40</number>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>true</bool>
      </attribute>
      <attribute name="verticalHeaderStretchLastSection">
       <bool>false</bool>
      </attribute>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
-     <row/>
      <row/>
      <row/>
      <row/>
