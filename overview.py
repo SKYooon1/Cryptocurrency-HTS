@@ -17,7 +17,7 @@ class OverViewWorker(QThread):
         while self.running:
             data = wm.get()
             self.dataSent.emit(int  (data['trade_price']),
-                               float(data['change_rate']),
+                               float(data['signed_change_rate']),
                                float(data['acc_trade_volume_24h']),
                                int  (data['high_price']),
                                float(data['acc_trade_price_24h']),
