@@ -47,7 +47,7 @@ class OverviewWidget(QWidget):
         self.label_6.setText(f"{highPrice:,}")
         self.label_8.setText(f"{value / 100000000:,.1f} 억")
         self.label_10.setText(f"{lowPrice:,}")
-        self.label_12.setText(f"{bidVolume/askVolume:.2f}%")
+        self.label_12.setText(f"{bidVolume/askVolume*100:.2f}%")
         self.label_14.setText(f"{prevClosePrice:,}")
 
         self.__updateStyle()

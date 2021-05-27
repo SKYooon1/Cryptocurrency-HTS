@@ -24,7 +24,7 @@ class OrderbookWorker(QThread):
         self.running = False
 
 class OrderbookWidget(QWidget):
-    def __init__(self, parent=None, ticker="KRW-ETH"):
+    def __init__(self, parent=None, ticker="KRW-BTC"):
         super().__init__(parent)
         uic.loadUi("orderbook.ui", self)
         self.ticker = ticker
