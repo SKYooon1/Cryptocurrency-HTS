@@ -71,13 +71,13 @@ class OrderbookWidget(QWidget):
     def updateData(self, data):
         tradingAskValues = []
         tradingBidValues = []
-        for v in data[0]['orderbook_units']:
+        for v in data[0]['orderbook_units'][0:10]:
             tradingBidValues.append(int(v['bid_price'] * v['bid_size']))
-        for v in data[0]['orderbook_units'][::-1]:
+        for v in data[0]['orderbook_units'][10:0:-1]:
             tradingAskValues.append(int(v['ask_price'] * v['ask_size']))
         maxtradingValue = max(tradingBidValues + tradingAskValues)
 
-        for i, v in enumerate(data[0]['orderbook_units'][::-1]):
+        for i, v in enumerate(data[0]['orderbook_units'][10:0:-1]):
             item_0 = self.tableAsks.item(i, 0)
             item_0.setText(f"{v['ask_price']:,}")
             item_1 = self.tableAsks.item(i, 1)
@@ -87,7 +87,7 @@ class OrderbookWidget(QWidget):
             item_2.setFormat(f"{tradingAskValues[i]:,}")
             item_2.setValue(tradingAskValues[i])
 
-        for i, v in enumerate(data[0]['orderbook_units']):
+        for i, v in enumerate(data[0]['orderbook_units'][0:10]):
             item_0 = self.tableBids.item(i, 0)
             item_0.setText(f"{v['bid_price']:,}")
             item_1 = self.tableBids.item(i, 1)
