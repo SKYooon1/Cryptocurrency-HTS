@@ -17,7 +17,7 @@ class OrderbookWorker(QThread):
     def run(self):
         while self.running:
             data = pyupbit.get_orderbook(self.ticker)
-            time.sleep(0.1)
+            time.sleep(0.2)
             self.dataSent.emit(data)
 
     def close(self):
