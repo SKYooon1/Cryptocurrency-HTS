@@ -17,7 +17,7 @@ class OrderbookWorker(QThread):
     def run(self):
         while self.running:
             data = pyupbit.get_orderbook(self.ticker)
-            time.sleep(0.1)
+            time.sleep(0.2)
             self.dataSent.emit(data)
 
     def close(self):
@@ -79,7 +79,7 @@ class OrderbookWidget(QWidget):
 
         for i, v in enumerate(data[0]['orderbook_units'][9::-1]):
             item_0 = self.tableAsks.item(i, 0)
-            item_0.setText(f"{v['ask_price']:,}")
+            item_0.setText(f"{int(v['ask_price']):,}")
             item_1 = self.tableAsks.item(i, 1)
             item_1.setText(f"{v['ask_size']:,}")
             item_2 = self.tableAsks.cellWidget(i, 2)
@@ -89,7 +89,7 @@ class OrderbookWidget(QWidget):
 
         for i, v in enumerate(data[0]['orderbook_units'][:10]):
             item_0 = self.tableBids.item(i, 0)
-            item_0.setText(f"{v['bid_price']:,}")
+            item_0.setText(f"{int(v['bid_price']):,}")
             item_1 = self.tableBids.item(i, 1)
             item_1.setText(f"{v['bid_size']:,}")
             item_2 = self.tableBids.cellWidget(i, 2)

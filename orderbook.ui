@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>461</width>
-    <height>767</height>
+    <width>439</width>
+    <height>629</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,14 +17,14 @@
    <item row="0" column="0">
     <widget class="QTableWidget" name="tableAsks">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
      <property name="minimumSize">
       <size>
-       <width>400</width>
+       <width>300</width>
        <height>0</height>
       </size>
      </property>
@@ -96,6 +96,9 @@
      <attribute name="horizontalHeaderVisible">
       <bool>true</bool>
      </attribute>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>110</number>
+     </attribute>
      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
       <bool>false</bool>
      </attribute>
@@ -109,7 +112,7 @@
       <bool>true</bool>
      </attribute>
      <attribute name="verticalHeaderDefaultSectionSize">
-      <number>40</number>
+      <number>35</number>
      </attribute>
      <attribute name="verticalHeaderHighlightSections">
       <bool>true</bool>
@@ -142,6 +145,11 @@
        <string>총액</string>
       </property>
      </column>
+     <item row="0" column="2">
+      <property name="text">
+       <string/>
+      </property>
+     </item>
     </widget>
    </item>
    <item row="1" column="0">
@@ -154,14 +162,14 @@
    <item row="2" column="0">
     <widget class="QTableWidget" name="tableBids">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
      <property name="minimumSize">
       <size>
-       <width>400</width>
+       <width>300</width>
        <height>0</height>
       </size>
      </property>
@@ -233,6 +241,9 @@
      <attribute name="horizontalHeaderVisible">
       <bool>false</bool>
      </attribute>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>110</number>
+     </attribute>
      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
       <bool>false</bool>
      </attribute>
@@ -246,7 +257,7 @@
       <bool>true</bool>
      </attribute>
      <attribute name="verticalHeaderDefaultSectionSize">
-      <number>40</number>
+      <number>35</number>
      </attribute>
      <attribute name="verticalHeaderHighlightSections">
       <bool>true</bool>

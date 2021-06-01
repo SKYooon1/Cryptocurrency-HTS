@@ -60,9 +60,11 @@ class OverviewWidget(QWidget):
             self.label_1.setStyleSheet("color:red;")
             self.label_2.setStyleSheet("background-color:red;color:white")
 
+    def closeEvent(self, event):
+        self.ow.close()
+
 if __name__ == "__main__":
     from PyQt5.QtWidgets import QApplication
-
     app = QApplication(sys.argv)
     ow = OverviewWidget()
     ow.show()
