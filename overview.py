@@ -13,9 +13,9 @@ class OverViewWorker(QThread):
         self.running = True
 
     def run(self):
-        wm = WebSocketManager("ticker", [f"{self.ticker}"])
+        self.wm = WebSocketManager("ticker", [f"{self.ticker}"])
         while self.running:
-            data = wm.get()
+            data = self.wm.get()
             self.dataSent.emit(int  (data['trade_price']),
                                float(data['signed_change_rate']),
                                float(data['acc_trade_volume_24h']),
@@ -28,6 +28,7 @@ class OverViewWorker(QThread):
 
     def close(self):
         self.running = False
+        self.wm.terminate()
 
 class OverviewWidget(QWidget):
     def __init__(self, parent=None, ticker="KRW-BTC"):
@@ -35,9 +36,9 @@ class OverviewWidget(QWidget):
         uic.loadUi("overview.ui", self)
         self.ticker = ticker.replace("KRW-", "")
 
-        self.ovw = OverViewWorker(ticker)
-        self.ovw.dataSent.connect(self.fillData)
-        self.ovw.start()
+        self.ow = OverViewWorker(ticker)
+        self.ow.dataSent.connect(self.fillData)
+        self.ow.start()
 
     def fillData(self, currPrice, chgRate, volume, highPrice, value,
                  lowPrice, askVolume, bidVolume, prevClosePrice):
