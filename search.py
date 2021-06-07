@@ -44,7 +44,7 @@ class SearchWidget(QWidget):
 
     def clickGmailBtn(self):
         if self.gmailButton.text() == "Gmail":
-            gmail.sendMail()        #수업시간에 한 테스트 메일임. 코인 정보 보내도록 수정해야 함
+            gmail.sendMail(self.getTicker.text())        # 티커의 현재가만 발송하도록 되어있음
             notify = QMessageBox()
             notify.setText("메일 발송 완료")
             notify.setStandardButtons(QMessageBox.Yes)
@@ -52,7 +52,7 @@ class SearchWidget(QWidget):
 
     def clickTeleBtn(self):
         if self.teleButton.text() == "Telegram":
-            telegram.telebot()      #얘도 코인 정보 발송하게 수정해야 함
+            telegram.send(self.getTicker.text())   # 티커의 현재가만 발송하도록 되어있음
             notify = QMessageBox()
             notify.setText("텔레그램 봇 메세지 발송")
             notify.setStandardButtons(QMessageBox.Yes)
