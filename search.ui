@@ -59,9 +59,9 @@
   <widget class="QPushButton" name="gmailButton">
    <property name="geometry">
     <rect>
-     <x>374</x>
-     <y>30</y>
-     <width>91</width>
+     <x>360</x>
+     <y>20</y>
+     <width>111</width>
      <height>23</height>
     </rect>
    </property>
@@ -72,9 +72,9 @@
   <widget class="QPushButton" name="teleButton">
    <property name="geometry">
     <rect>
-     <x>374</x>
+     <x>360</x>
      <y>90</y>
-     <width>91</width>
+     <width>111</width>
      <height>23</height>
     </rect>
    </property>
@@ -82,10 +82,10 @@
     <string>Telegram</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>170</x>
      <y>10</y>
      <width>182</width>
      <height>115</height>
