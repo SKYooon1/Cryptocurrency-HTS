@@ -1,5 +1,6 @@
 import mimetypes
 import smtplib
+import pyupbit
 from email.mime.base import MIMEBase 	#파일첨부 위해서
 from email.mime.text import MIMEText 	#텍스트를 위해서
 from email.mime.image import MIMEImage 	#이미지를 위해서
@@ -7,15 +8,15 @@ from email.mime.image import MIMEImage 	#이미지를 위해서
 host = "smtp.gmail.com"  # Gmail STMP 서버 주소.
 port = "587"
 
-def sendMail():
+def sendMail(ticker):
     global host, port
 
     senderAddr = "cryptocurrencyhts@gmail.com"  # 보내는 사람 email 주소.
     recipientAddr = "osjin6633@gmail.com"  # 받는 사람 email 주소.
 
-    text = "hello world"
+    text = ticker + " " + str(pyupbit.get_current_price("KRW-"+ticker))
     msg = MIMEText(text)
-    msg['Subject'] = "Test email in Python 3.5"
+    msg['Subject'] = "Current Price of ticker you've chose"
     msg['From'] = senderAddr
     msg['To'] = recipientAddr
 

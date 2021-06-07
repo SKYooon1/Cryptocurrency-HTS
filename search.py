@@ -44,7 +44,7 @@ class SearchWidget(QWidget):
 
     def clickGmailBtn(self):
         if self.gmailButton.text() == "Gmail":
-            gmail.sendMail()        #수업시간에 한 테스트 메일임. 코인 정보 보내도록 수정해야 함
+            gmail.sendMail(self.getTicker.text())        #수업시간에 한 테스트 메일임. 코인 정보 보내도록 수정해야 함
             notify = QMessageBox()
             notify.setText("메일 발송 완료")
             notify.setStandardButtons(QMessageBox.Yes)
