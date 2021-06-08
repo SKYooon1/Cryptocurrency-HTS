@@ -1,7 +1,5 @@
 import sys
 import pyupbit
-import overview
-import orderbook
 import gmail
 import telegram
 
@@ -9,6 +7,7 @@ from PyQt5 import uic, QtGui, QtCore
 from PyQt5.QtWidgets import QWidget, QMessageBox
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 
+Ticker = "DOGE"
 
 class SearchWidget(QWidget):
     def __init__(self, parent=None):
@@ -40,7 +39,8 @@ class SearchWidget(QWidget):
                 wrongName.setStandardButtons(QMessageBox.Yes)
                 wrongName = wrongName.exec()
             else:
-                overview.OverviewWidget.setTicker(self.tickerGet())
+                global Ticker
+                Ticker = self.tickerGet()
 
     def clickGmailBtn(self):
         if self.gmailButton.text() == "Gmail":
