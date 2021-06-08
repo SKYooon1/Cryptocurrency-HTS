@@ -1,9 +1,6 @@
-import mimetypes
 import smtplib
 import pyupbit
-from email.mime.base import MIMEBase 	#파일첨부 위해서
 from email.mime.text import MIMEText 	#텍스트를 위해서
-from email.mime.image import MIMEImage 	#이미지를 위해서
 
 host = "smtp.gmail.com"  # Gmail STMP 서버 주소.
 port = "587"

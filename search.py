@@ -5,7 +5,6 @@ import telegram
 
 from PyQt5 import uic, QtGui, QtCore
 from PyQt5.QtWidgets import QWidget, QMessageBox
-from PyQt5.QtCore import Qt, QThread, pyqtSignal
 
 Ticker = "DOGE"
 

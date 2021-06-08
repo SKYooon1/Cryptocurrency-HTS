@@ -1,7 +1,5 @@
 import telepot
 import pyupbit
-import sys
-import pandas as pd
 
 def send(ticker):
     token = "1869660692:AAGDTzSc7E_5l8uJFV8Xu91_RuSCRRnAk1M"

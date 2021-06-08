@@ -5,7 +5,6 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QTableWidgetItem, QProgressBar, QWidget
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 
-
 class OrderbookWorker(QThread):
     dataSent = pyqtSignal(list)
 

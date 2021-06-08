@@ -1,6 +1,5 @@
 import sys
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from mplfinance.original_flavor import candlestick2_ohlc
