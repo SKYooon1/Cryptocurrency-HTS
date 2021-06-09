@@ -69,9 +69,9 @@ class MainWindow(QMainWindow, form_class):
         return self.getTicker.text()
 
     def closeEvent(self, event):
+        self.widget_1.closeEvent(event)
         self.widget_2.closeEvent(event)
         self.widget_3.closeEvent(event)
-        self.widget_4.closeEvent(event)
 
 
 if __name__ == "__main__":

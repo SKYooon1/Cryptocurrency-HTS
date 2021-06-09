@@ -1,5 +1,5 @@
 import smtplib
-import pyupbit
+from pyupbit import WebSocketManager
 from email.mime.text import MIMEText 	#텍스트를 위해서
 
 host = "smtp.gmail.com"  # Gmail STMP 서버 주소.
@@ -11,9 +11,12 @@ def sendMail(ticker):
     senderAddr = "cryptocurrencyhts@gmail.com"  # 보내는 사람 email 주소.
     recipientAddr = "osjin6633@gmail.com"  # 받는 사람 email 주소.
 
-    text = ticker + " " + str(pyupbit.get_current_price("KRW-"+ticker))
+    wm = WebSocketManager("ticker", ["KRW-" + f"{ticker}"])
+    data = wm.get()
+    text = ticker + "\n현재가 - " + str(data['trade_price']) + "원\n" + "고가 - " \
+              + str(data['high_price']) + "원\n" + "저가 - " + str(data['low_price']) + "원"
     msg = MIMEText(text)
-    msg['Subject'] = "Current Price of ticker you've chose"
+    msg['Subject'] = "information of Coin you've chose"
     msg['From'] = senderAddr
     msg['To'] = recipientAddr
 
