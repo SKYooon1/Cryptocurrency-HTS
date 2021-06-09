@@ -1,17 +1,40 @@
 import sys
 from PyQt5.QtWidgets import *
+from PyQt5.QtCore import QThread, pyqtSignal
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from mplfinance.original_flavor import candlestick2_ohlc
 import matplotlib.ticker as ticker
 import pyupbit
+import pandas
+import time
+
+class ChartWorker(QThread):
+    dataSent = pyqtSignal(pandas.core.frame.DataFrame)
+
+    def __init__(self, ticker):
+        super().__init__()
+        self.ticker = ticker
+        self.running = True
+
+    def run(self):
+        while self.running:
+            data = pyupbit.get_ohlcv(self.ticker, interval='minute30', count=30)
+            time.sleep(0.2)
+            self.dataSent.emit(data)
+
+    def close(self):
+        self.running = False
 
 class ChartWidget(QWidget):
     def __init__(self, parent=None, ticker="KRW-BTC"):
         super().__init__(parent)
         self.setupUI()
         self.ticker = ticker
-        self.candle_stick()
+
+        self.ow = ChartWorker(self.ticker)
+        self.ow.dataSent.connect(self.candle_stick)
+        self.ow.start()
 
     def setupUI(self):
         self.setGeometry(600, 200, 700, 600)
@@ -25,26 +48,22 @@ class ChartWidget(QWidget):
 
         self.setLayout(layout)
 
-    def candle_stick(self):
-        df = pyupbit.get_ohlcv(self.ticker, count=30)
-
+    def candle_stick(self, data):
         ax = self.fig.add_subplot(111)
 
-        day_list = []
         name_list = []
-        for i, day in enumerate(df.index):
-            if day.dayofweek == 0:
-                day_list.append(i)
-                name_list.append(day.strftime('%Y-%m-%d') + '(Mon)')
 
-        ax.xaxis.set_major_locator(ticker.FixedLocator(day_list))
         ax.xaxis.set_major_formatter(ticker.FixedFormatter(name_list))
 
-        candlestick2_ohlc(ax, df['open'], df['high'], df['low'], df['close'], width=0.5, colorup='r', colordown='b')
+        candlestick2_ohlc(ax, data['open'], data['high'], data['low'], data['close'],
+                          width=0.5, colorup='r', colordown='b')
 
         ax.grid()
 
         self.canvas.draw()
+
+    def closeEvent(self, event):
+        self.ow.close()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
