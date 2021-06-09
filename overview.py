@@ -5,8 +5,10 @@ from pyupbit import WebSocketManager
 from PyQt5.QtCore import QThread, pyqtSignal
 import time
 
+OVTICKER = "BTC"
+
 class OverViewWorker(QThread):
-    dataSent = pyqtSignal(int, float, float, int, float, int, float, float, int)
+    dataSent = pyqtSignal(str, int, float, float, int, float, int, float, float, int)
 
     def __init__(self, ticker):
         super().__init__()
@@ -14,10 +16,13 @@ class OverViewWorker(QThread):
         self.running = True
 
     def run(self):
-        self.wm = WebSocketManager("ticker", [f"{self.ticker}"])
+        global OVTICKER
         while self.running:
+            print(OVTICKER)
+            self.wm = WebSocketManager("ticker", [f"{self.ticker}"])
             data = self.wm.get()
-            self.dataSent.emit(int  (data['trade_price']),
+            self.dataSent.emit(str  (OVTICKER),
+                               int  (data['trade_price']),
                                float(data['signed_change_rate']),
                                float(data['acc_trade_volume_24h']),
                                int  (data['high_price']),
@@ -33,17 +38,17 @@ class OverViewWorker(QThread):
         self.wm.terminate()
 
 class OverviewWidget(QWidget):
-    def __init__(self, parent=None, ticker="KRW-BTC"):
+    def __init__(self, parent=None, ticker=OVTICKER):
         super().__init__(parent)
         uic.loadUi("overview.ui", self)
-
-        self.ticker = ticker.replace("KRW-", "")
-        self.ow = OverViewWorker(ticker)
+        self.ticker = ticker
+        self.ow = OverViewWorker("KRW-"+ticker)
         self.ow.dataSent.connect(self.fillData)
         self.ow.start()
 
-    def fillData(self, currPrice, chgRate, volume, highPrice, value,
+    def fillData(self, OVTICKER, currPrice, chgRate, volume, highPrice, value,
                  lowPrice, askVolume, bidVolume, prevClosePrice):
+        self.label.setText(f"{OVTICKER}")
         self.label_1.setText(f"{currPrice:,}")
         self.label_2.setText(f"{chgRate*100:+.2f}%")
         self.label_4.setText(f"{volume:.4f} {self.ticker}")

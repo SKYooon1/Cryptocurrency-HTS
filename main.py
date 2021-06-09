@@ -4,6 +4,7 @@ import gmail
 import telegram
 from PyQt5 import uic, QtGui, QtCore
 from PyQt5.QtWidgets import QMessageBox, QApplication, QMainWindow
+import overview
 
 form_class = uic.loadUiType("main.ui")[0]
 
@@ -37,7 +38,7 @@ class MainWindow(QMainWindow, form_class):
                 wrongName.setStandardButtons(QMessageBox.Yes)
                 wrongName = wrongName.exec()
             else:
-                self.ticker = self.tickerGet()
+                overview.OVTICKER = self.tickerGet()
 
     def clickGmailBtn(self):
         if self.gmailButton.text() == "Gmail":
