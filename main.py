@@ -1,11 +1,9 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 import pyupbit
 import gmail
 import telegram
 from PyQt5 import uic, QtGui, QtCore
-from PyQt5.QtWidgets import QWidget, QMessageBox
-from PyQt5.QtCore import Qt, QThread, pyqtSignal
+from PyQt5.QtWidgets import QMessageBox, QApplication, QMainWindow
 
 form_class = uic.loadUiType("main.ui")[0]
 

@@ -3,7 +3,7 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget
 from pyupbit import WebSocketManager
 from PyQt5.QtCore import QThread, pyqtSignal
-from search import Ticker
+import time
 
 class OverViewWorker(QThread):
     dataSent = pyqtSignal(int, float, float, int, float, int, float, float, int)
@@ -26,15 +26,17 @@ class OverViewWorker(QThread):
                                float(data['acc_ask_volume']),
                                float(data['acc_bid_volume']),
                                int  (data['prev_closing_price']))
+            time.sleep(0.2)
 
     def close(self):
         self.running = False
         self.wm.terminate()
 
 class OverviewWidget(QWidget):
-    def __init__(self, parent=None, ticker="KRW-"+Ticker):
+    def __init__(self, parent=None, ticker="KRW-BTC"):
         super().__init__(parent)
         uic.loadUi("overview.ui", self)
+
         self.ticker = ticker.replace("KRW-", "")
         self.ow = OverViewWorker(ticker)
         self.ow.dataSent.connect(self.fillData)
