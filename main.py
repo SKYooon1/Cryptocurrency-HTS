@@ -64,6 +64,7 @@ class MainWindow(QMainWindow, form_class):
         lst_item = self.listWidget.selectedItems()
         for item in lst_item:
             self.getTicker.setText(item.text())
+            self.clickTickerBtn()
 
     def tickerGet(self):
         return self.getTicker.text()

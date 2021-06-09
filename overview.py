@@ -27,11 +27,12 @@ class OverViewWorker(QThread):
         global OVTICKER
         binance = ccxt.binance()
         while self.running:
+            wm = WebSocketManager("ticker", ["KRW-"+f"{OVTICKER}"])
             kticker = get_current_price("KRW-" + OVTICKER) * self.exrate
             bticker = binance.fetch_ticker(OVTICKER + '/USDT')['close']
             gp = ((kticker - bticker) / bticker) * 100
-            self.wm = WebSocketManager("ticker", ["KRW-"+f"{OVTICKER}"])
-            data = self.wm.get()
+            data = wm.get()
+            wm.terminate()
             self.dataSent.emit(str  (OVTICKER),
                                int  (data['trade_price']),
                                float(data['signed_change_rate']),
@@ -47,7 +48,6 @@ class OverViewWorker(QThread):
 
     def close(self):
         self.running = False
-        self.wm.terminate()
 
 class OverviewWidget(QWidget):
     def __init__(self, parent=None, ticker=OVTICKER):
