@@ -41,7 +41,7 @@ class MainWindow(QMainWindow, form_class):
                 wrongName = wrongName.exec()
             else:
                 overview.OVTICKER = self.tickerGet()
-                chart.CTICKER = self.tickerGet()
+                chart.CHTICKER = self.tickerGet()
                 orderbook.OBTICKER = self.tickerGet()
 
     def clickGmailBtn(self):
