@@ -5,6 +5,8 @@ import telegram
 from PyQt5 import uic, QtGui, QtCore
 from PyQt5.QtWidgets import QMessageBox, QApplication, QMainWindow
 import overview
+import chart
+import orderbook
 
 form_class = uic.loadUiType("main.ui")[0]
 
@@ -39,6 +41,8 @@ class MainWindow(QMainWindow, form_class):
                 wrongName = wrongName.exec()
             else:
                 overview.OVTICKER = self.tickerGet()
+                chart.CTICKER = self.tickerGet()
+                orderbook.OBTICKER = self.tickerGet()
 
     def clickGmailBtn(self):
         if self.gmailButton.text() == "Gmail":
