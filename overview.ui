@@ -119,7 +119,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>15</height>
+         <height>20</height>
         </size>
        </property>
        <property name="text">
@@ -132,7 +132,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>15</height>
+         <height>20</height>
         </size>
        </property>
        <property name="text">
@@ -145,7 +145,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>15</height>
+         <height>20</height>
         </size>
        </property>
        <property name="text">
@@ -158,7 +158,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>15</height>
+         <height>20</height>
         </size>
        </property>
        <property name="font">
@@ -181,7 +181,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>15</height>
+         <height>20</height>
         </size>
        </property>
        <property name="font">
@@ -204,7 +204,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>15</height>
+         <height>20</height>
         </size>
        </property>
        <property name="text">
@@ -217,7 +217,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>15</height>
+         <height>20</height>
         </size>
        </property>
        <property name="text">
@@ -230,7 +230,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>15</height>
+         <height>20</height>
         </size>
        </property>
        <property name="font">
@@ -253,7 +253,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>15</height>
+         <height>20</height>
         </size>
        </property>
        <property name="text">
@@ -266,7 +266,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>15</height>
+         <height>20</height>
         </size>
        </property>
        <property name="font">
@@ -289,7 +289,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>15</height>
+         <height>20</height>
         </size>
        </property>
        <property name="font">
@@ -312,7 +312,7 @@
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>15</height>
+         <height>20</height>
         </size>
        </property>
        <property name="font">
