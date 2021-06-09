@@ -18,8 +18,7 @@ class OverViewWorker(QThread):
     def run(self):
         global OVTICKER
         while self.running:
-            print(OVTICKER)
-            self.wm = WebSocketManager("ticker", [f"{self.ticker}"])
+            self.wm = WebSocketManager("ticker", ["KRW-"+f"{OVTICKER}"])
             data = self.wm.get()
             self.dataSent.emit(str  (OVTICKER),
                                int  (data['trade_price']),
@@ -51,7 +50,7 @@ class OverviewWidget(QWidget):
         self.label.setText(f"{OVTICKER}")
         self.label_1.setText(f"{currPrice:,}")
         self.label_2.setText(f"{chgRate*100:+.2f}%")
-        self.label_4.setText(f"{volume:.4f} {self.ticker}")
+        self.label_4.setText(f"{volume:.4f} {OVTICKER}")
         self.label_6.setText(f"{highPrice:,}")
         self.label_8.setText(f"{value / 100000000:,.1f} 억")
         self.label_10.setText(f"{lowPrice:,}")
