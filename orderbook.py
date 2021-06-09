@@ -5,6 +5,8 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QTableWidgetItem, QProgressBar, QWidget
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
 
+OBTICKER = "BTC"
+
 class OrderbookWorker(QThread):
     dataSent = pyqtSignal(list)
 
@@ -15,7 +17,7 @@ class OrderbookWorker(QThread):
 
     def run(self):
         while self.running:
-            data = pyupbit.get_orderbook(self.ticker)
+            data = pyupbit.get_orderbook("KRW-"+OBTICKER)
             self.dataSent.emit(data)
             time.sleep(0.2)
 
@@ -23,7 +25,7 @@ class OrderbookWorker(QThread):
         self.running = False
 
 class OrderbookWidget(QWidget):
-    def __init__(self, parent=None, ticker="KRW-BTC"):
+    def __init__(self, parent=None, ticker="KRW-" + OBTICKER):
         super().__init__(parent)
         uic.loadUi("orderbook.ui", self)
         self.ticker = ticker
@@ -63,7 +65,7 @@ class OrderbookWidget(QWidget):
                             """)
             self.tableBids.setCellWidget(i, 2, item_2)
 
-        self.ow = OrderbookWorker(self.ticker)
+        self.ow = OrderbookWorker("KRW-"+OBTICKER)
         self.ow.dataSent.connect(self.updateData)
         self.ow.start()
 
