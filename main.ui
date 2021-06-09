@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1440</width>
-    <height>850</height>
+    <height>946</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -208,7 +208,7 @@
        </layout>
       </item>
       <item>
-       <widget class="OverviewWidget" name="widget_3" native="true">
+       <widget class="OverviewWidget" name="widget_1" native="true">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
           <horstretch>0</horstretch>
@@ -256,7 +256,7 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="OrderbookWidget" name="widget_4" native="true">
+       <widget class="OrderbookWidget" name="widget_3" native="true">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
           <horstretch>0</horstretch>
