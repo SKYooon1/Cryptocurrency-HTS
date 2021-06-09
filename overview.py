@@ -6,6 +6,7 @@ from PyQt5.QtCore import QThread, pyqtSignal
 import time
 from currency_converter import CurrencyConverter
 import ccxt
+import spam
 
 OVTICKER = "BTC"
 
@@ -30,7 +31,7 @@ class OverViewWorker(QThread):
             wm = WebSocketManager("ticker", ["KRW-"+f"{OVTICKER}"])
             kticker = get_current_price("KRW-" + OVTICKER) * self.exrate
             bticker = binance.fetch_ticker(OVTICKER + '/USDT')['close']
-            gp = ((kticker - bticker) / bticker) * 100
+            gp = spam.kimch_primium(kticker, bticker)
             data = wm.get()
             wm.terminate()
             self.dataSent.emit(str  (OVTICKER),
