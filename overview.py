@@ -16,22 +16,22 @@ class OverViewWorker(QThread):
         super().__init__()
         self.ticker = ticker
         self.running = True
+        self.exrate = self.getExRate()
 
-    def getGimp(self):
-        binance = ccxt.binance()
+    def getExRate(self):
         c = CurrencyConverter('http://www.ecb.europa.eu/stats/eurofxref/eurofxref.zip')
-        ktod = (c.convert(1, "KRW", "USD"))
-        kticker = get_current_price("KRW-" + OVTICKER) * ktod
-        bticker = binance.fetch_ticker(OVTICKER + '/USDT')['close']
-        gp = ((kticker - bticker) / bticker) * 100
-        return gp
+        exrate = (c.convert(1, "KRW", "USD"))
+        return exrate
 
     def run(self):
         global OVTICKER
+        binance = ccxt.binance()
         while self.running:
+            kticker = get_current_price("KRW-" + OVTICKER) * self.exrate
+            bticker = binance.fetch_ticker(OVTICKER + '/USDT')['close']
+            gp = ((kticker - bticker) / bticker) * 100
             self.wm = WebSocketManager("ticker", ["KRW-"+f"{OVTICKER}"])
             data = self.wm.get()
-            gp = self.getGimp()
             self.dataSent.emit(str  (OVTICKER),
                                int  (data['trade_price']),
                                float(data['signed_change_rate']),
