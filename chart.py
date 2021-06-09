@@ -20,7 +20,7 @@ class ChartWorker(QThread):
 
     def run(self):
         while self.running:
-            data = pyupbit.get_ohlcv("KRW-"+CHTICKER, interval='minute1', count=30)
+            data = pyupbit.get_ohlcv("KRW-"+CHTICKER, interval='minute30', count=30)
             self.dataSent.emit(data)
             time.sleep(1)
 
@@ -49,6 +49,8 @@ class ChartWidget(QWidget):
 
     def candle_stick(self, data):
         self.ax = self.fig.add_subplot(111)
+
+        self.ax.set_xticks([])
 
         candlestick2_ohlc(self.ax, data['open'], data['high'], data['low'], data['close'],
                           width=0.5, colorup='r', colordown='b')
