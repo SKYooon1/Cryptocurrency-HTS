@@ -21,7 +21,6 @@ class MainWindow(QMainWindow, form_class):
             QtCore.Qt.CustomizeWindowHint |
             QtCore.Qt.WindowTitleHint |
             QtCore.Qt.WindowCloseButtonHint |
-            QtCore.Qt.WindowStaysOnTopHint |
             QtCore.Qt.WindowMaximizeButtonHint |
             QtCore.Qt.WindowMinimizeButtonHint
         )
@@ -94,7 +93,6 @@ class MainWindow(QMainWindow, form_class):
         self.widget_1.closeEvent(event)
         self.widget_2.closeEvent(event)
         self.widget_3.closeEvent(event)
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
