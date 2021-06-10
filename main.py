@@ -45,6 +45,8 @@ class MainWindow(QMainWindow, form_class):
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Return:
             self.clickTickerBtn()
+        elif e.key() == Qt.Key_Enter:
+            self.itemSelect()
         elif e.key() == Qt.Key_F12:
             self.showMaximized()
         elif e.key() == Qt.Key_F11:
@@ -54,7 +56,7 @@ class MainWindow(QMainWindow, form_class):
 
     def clickTickerBtn(self):
         if self.tickerButton.text() == "검색":
-            if self.getTicker.text() not in self.tickerList:
+            if self.tickerGet() not in self.tickerList:
                 wrongName = QMessageBox()
                 wrongName.setText("없는코인")
                 wrongName.setStandardButtons(QMessageBox.Yes)
@@ -87,7 +89,7 @@ class MainWindow(QMainWindow, form_class):
             self.clickTickerBtn()
 
     def tickerGet(self):
-        return self.getTicker.text()
+        return self.getTicker.text().upper()
 
     def closeEvent(self, event):
         self.widget_1.closeEvent(event)
