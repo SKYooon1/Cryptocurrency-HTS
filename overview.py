@@ -9,6 +9,7 @@ import ccxt
 import spam
 
 OVTICKER = "BTC"
+GP = False
 
 class OverViewWorker(QThread):
     dataSent = pyqtSignal(str, int, float, float, int, float, int, float, float, int, float)
@@ -27,11 +28,18 @@ class OverViewWorker(QThread):
     def run(self):
         global OVTICKER
         binance = ccxt.binance()
+        markets = binance.fetch_tickers()
         while self.running:
+            global GP
             wm = WebSocketManager("ticker", ["KRW-"+f"{OVTICKER}"])
             kticker = get_current_price("KRW-" + OVTICKER) * self.exrate
-            bticker = binance.fetch_ticker(OVTICKER + '/USDT')['close']
-            gp = spam.kimch_primium(kticker, bticker)
+            if (OVTICKER + '/USDT') in markets:
+                bticker = binance.fetch_ticker(OVTICKER + '/USDT')['close']
+                gp = spam.kimch_primium(kticker, bticker)
+                GP = True
+            else:
+                gp = 0
+                GP = False
             data = wm.get()
             wm.terminate()
             self.dataSent.emit(str  (OVTICKER),
@@ -70,7 +78,11 @@ class OverviewWidget(QWidget):
         self.label_10.setText(f"{lowPrice:,}")
         self.label_12.setText(f"{bidVolume/askVolume*100:.2f}%")
         self.label_14.setText(f"{prevClosePrice:,}")
-        self.gimp.setText("김치 프리미엄 "+f"{GimchiPremium:.2f}%")
+        global GP
+        if GP:
+            self.gimp.setText("김치 프리미엄 " + f"{GimchiPremium:.2f}%")
+        else:
+            self.gimp.setText("김치 프리미엄 알수없음")
 
         self.__updateStyle()
 
