@@ -3,7 +3,8 @@ import pyupbit
 import gmail
 import telegram
 from PyQt5 import uic, QtGui, QtCore
-from PyQt5.QtWidgets import QMessageBox, QApplication, QMainWindow
+from PyQt5.QtWidgets import QMessageBox, QApplication, QMainWindow, QDialog
+from PyQt5.QtCore import Qt
 import overview
 import chart
 import orderbook
@@ -14,6 +15,16 @@ class MainWindow(QMainWindow, form_class):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+
+        self.setWindowFlags(
+            QtCore.Qt.Window |
+            QtCore.Qt.CustomizeWindowHint |
+            QtCore.Qt.WindowTitleHint |
+            QtCore.Qt.WindowCloseButtonHint |
+            QtCore.Qt.WindowStaysOnTopHint |
+            QtCore.Qt.WindowMaximizeButtonHint |
+            QtCore.Qt.WindowMinimizeButtonHint
+        )
 
         self.tickerButton.clicked.connect(self.clickTickerBtn)
         self.listWidget.itemDoubleClicked.connect(self.itemSelect)
@@ -31,6 +42,16 @@ class MainWindow(QMainWindow, form_class):
             self.tickerList.append(i.split('-')[1])
         for i in self.tickerList:
             self.listWidget.addItem(i)
+
+    def keyPressEvent(self, e):
+        if e.key() == Qt.Key_Return:
+            self.clickTickerBtn()
+        elif e.key() == Qt.Key_F12:
+            self.showMaximized()
+        elif e.key() == Qt.Key_F11:
+            self.showNormal()
+        elif e.key() == Qt.Key_Escape:
+            self.close()
 
     def clickTickerBtn(self):
         if self.tickerButton.text() == "검색":
