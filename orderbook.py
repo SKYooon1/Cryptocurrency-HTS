@@ -84,7 +84,11 @@ class OrderbookWidget(QWidget):
             item_1 = self.tableAsks.item(i, 1)
             item_1.setText(f"{v['ask_size']:,}")
             item_2 = self.tableAsks.cellWidget(i, 2)
+            if maxtradingValue > 2147483647:
+                maxtradingValue = 2147483647
             item_2.setRange(0, maxtradingValue)
+            if tradingAskValues[i] > 2147483647:
+                tradingAskValues[i] = 2147483647
             item_2.setFormat(f"{tradingAskValues[i]:,}")
             item_2.setValue(tradingAskValues[i])
 
@@ -94,7 +98,11 @@ class OrderbookWidget(QWidget):
             item_1 = self.tableBids.item(i, 1)
             item_1.setText(f"{v['bid_size']:,}")
             item_2 = self.tableBids.cellWidget(i, 2)
+            if maxtradingValue > 2147483647:
+                maxtradingValue = 2147483647
             item_2.setRange(0, maxtradingValue)
+            if tradingBidValues[i] > 2147483647:
+                tradingBidValues[i] = 2147483647
             item_2.setFormat(f"{tradingBidValues[i]:,}")
             item_2.setValue(tradingBidValues[i])
 
